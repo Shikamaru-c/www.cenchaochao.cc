@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Desc from './Desc.js'
 import beautifyUrl from '../utils/beautifyUrl.js'
 import { getAllPosts } from '../apis'
-import Cofe from './Cofe.js'
 
 function Posts () {
   return (
@@ -12,7 +12,7 @@ function Posts () {
           return (
             <div key={index} style={styles.post}>
               <h3 style={styles.title}><Link to={`/${beautifyUrl(post.title)}/`} style={styles.link}>{ post.title }</Link></h3>
-              <small style={styles.desc}>{ post.date } • <Cofe minutes={post.readingTime.minutes} />{ post.readingTime.text }</small>
+              <Desc date={post.date} readingTime={post.readingTime} />
               <p style={styles.spoiler}>{ post.spoiler }</p>
             </div>
           )
@@ -38,11 +38,6 @@ const styles = {
   link: {
     textDecoration: 'none',
     color: 'inherit'
-  },
-  desc: {
-    fontSize: 13,
-    lineHeight: '22px',
-    color: 'rgba(0, 0, 0, .9)'
   },
   spoiler: {
     marginTop: 0,

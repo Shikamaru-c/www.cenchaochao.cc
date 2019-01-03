@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from './pages/Home.js'
 import Post from './pages/Post.js'
+import Error from './pages/Error.js'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <Switch>
         <Route exact path="/" component={Home} />
         <Route strict path="/*/" component={Post} />
-      </div>
+        <Route path="*" component={Error}></Route>
+      </Switch>
     );
   }
 }
