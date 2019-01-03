@@ -1,20 +1,19 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import posts from '../posts/posts.json'
 import beautifyUrl from '../utils/beautifyUrl.js'
+import { getAllPosts } from '../apis'
 
 function Posts () {
   return (
     <div>
       {
-        posts.map((post, index) => {
-          const header = post.header
+        getAllPosts().map((post, index) => {
           return (
             <div key={index}>
-              <Link to={`/${beautifyUrl(header.title)}/`}>{ header.title }</Link>
-              <div>{ header.date }</div>
-              <div>{ header.spoiler }</div>
-              <div>{ header.readingTime.text }</div>
+              <Link to={`/${beautifyUrl(post.title)}/`}>{ post.title }</Link>
+              <div>{ post.date }</div>
+              <div>{ post.spoiler }</div>
+              <div>{ post.readingTime.text }</div>
             </div>
           )
         })
