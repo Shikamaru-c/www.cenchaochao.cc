@@ -5,23 +5,19 @@ class Post extends Component {
   constructor () {
     super()
     this.state = {
-      content: null
+      post: null
     }
   }
   componentDidMount () {
     const postTitle = this.props.location.pathname.slice(1, -1)
     const post = getPost(postTitle)
-    let content
-    if (post) {
-      content = post.content
-      this.setState({
-        content
-      })
-    }
+    post && this.setState({
+      post
+    })
   }
   render () {
     return (
-      <div dangerouslySetInnerHTML={{ __html: this.state.content }} />
+      <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} />
     )
   }
 }

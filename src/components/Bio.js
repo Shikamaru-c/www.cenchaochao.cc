@@ -14,7 +14,12 @@ function Bio () {
 
 let styles = {
   bio: {
-    display: 'flex'
+    display: 'flex',
+    marginTop: 42,
+    marginBottom: 70,
+    fontSize: 16,
+    lineHeight: '28px',
+    fontFamily: 'Merriweather, Georgia, serif'
   },
   avatar: {
     width: 56,

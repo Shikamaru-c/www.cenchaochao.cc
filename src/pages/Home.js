@@ -1,13 +1,14 @@
 import React from 'react'
 import Bio from '../components/Bio'
 import Posts from '../components/Posts'
+import Layout from '../components/Layout'
 
 function Home () {
   return (
-    <div>
+    <Layout>
       <Bio></Bio>
       <Posts></Posts>
-    </div>
+    </Layout>
   )
 }
 
