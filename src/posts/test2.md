@@ -1,10 +1,10 @@
 ---
-  title: test-world
-  date: 2018
+  title: this is my second post
+  date: 2018-01-03
   spoiler: user
 ---
 
-## TEST POST
+## SECOND POST
 
 * this is header
 * this is content

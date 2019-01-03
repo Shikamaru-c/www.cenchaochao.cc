@@ -10,6 +10,7 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
     const rawContent = fs.readFileSync(file, {encoding: 'utf-8'})
     const arrayContent = rawContent.split(split).filter(i => !!i)
 
+    // header
     const header = arrayContent.shift().split('\r\n').filter(i => !!i).reduce((object, item) => {
       const arrayItem = item.split(':')
       const key = arrayItem.shift().trim()
@@ -18,6 +19,7 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
       return object
     }, {})
 
+    // content
     let content = arrayContent.join(split)
     content = content.startsWith('\r\n\r\n') ? content.replace('\r\n\r\n', '') : content
 

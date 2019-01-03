@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import posts from '../posts/posts.json'
+import beautifyUrl from '../utils/beautifyUrl.js'
 
 class Post extends Component {
   constructor () {
@@ -10,7 +11,7 @@ class Post extends Component {
   }
   componentDidMount () {
     const postTitle = this.props.location.pathname.slice(1, -1)
-    const post = posts.filter(post => post.header.title === postTitle)[0]
+    const post = posts.filter(post => beautifyUrl(post.header.title) === postTitle)[0]
     let content
     if (post) {
       content = post.content
