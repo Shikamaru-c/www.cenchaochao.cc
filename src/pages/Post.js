@@ -4,6 +4,7 @@ import Desc from '../components/Desc.js'
 import NotFound from '../components/NotFound.js'
 import Bio from '../components/Bio.js'
 import { getPost } from '../apis'
+import './github-markdown.css'
 
 class Post extends Component {
   constructor () {
@@ -28,7 +29,7 @@ class Post extends Component {
             <>
               <h1 style={styles.title}>{post.header.title}</h1>
               <Desc date={post.header.date} readingTime={post.header.readingTime} />
-              <div style={styles.mdWrapper} dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div className="markdown-body" style={styles.mdWrapper} dangerouslySetInnerHTML={{ __html: post.content }} />
               <Bio />
             </>
           ) : <NotFound />
