@@ -8,10 +8,9 @@ class App extends Component {
     return (
       <div className="App">
         <Route exact path="/" component={Home} />
-        <Route path="/*" component={Post} />
+        <Route strict path="/*/" component={Post} />
       </div>
     );
   }
 }
-
 export default App;

@@ -1,5 +1,5 @@
 ---
-  title: hello world
+  title: hello-world
   date: 2018:#123
   spoiler: user
 ---

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import posts from '../posts/posts.json'
 
 function Posts () {
@@ -8,11 +9,11 @@ function Posts () {
         posts.map(post => {
           const header = post.header
           return (
-            <div key={Math.random()}>
+            <Link key={Math.random()} to={`/${header.title}/`}>
               <div>{ header.title }</div>
               <div>{ header.date }</div>
               <div>{ header.spoiler }</div>
-            </div>
+            </Link>
           )
         })
       }
