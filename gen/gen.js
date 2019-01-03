@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
 const markdown = require('markdown').markdown
+const readingTime = require('reading-time')
 const POSTS_PATH = path.resolve(__dirname, '../src/posts')
 
 glob(`${POSTS_PATH}/*.md`, (err, files) => {
@@ -22,6 +23,9 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
     // content
     let content = arrayContent.join(split)
     content = content.startsWith('\r\n\r\n') ? content.replace('\r\n\r\n', '') : content
+
+    // compute markdown reading time
+    header.readingTime = readingTime(content)
 
     return {
       header,

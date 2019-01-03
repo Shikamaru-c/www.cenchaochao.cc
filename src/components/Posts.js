@@ -14,6 +14,7 @@ function Posts () {
               <Link to={`/${beautifyUrl(header.title)}/`}>{ header.title }</Link>
               <div>{ header.date }</div>
               <div>{ header.spoiler }</div>
+              <div>{ header.readingTime.text }</div>
             </div>
           )
         })
