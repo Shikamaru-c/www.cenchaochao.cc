@@ -1,5 +1,5 @@
 ---
-  title: this is my fist post
+  title: this is my first post
   date: 2018-01-02
   spoiler: user
 ---

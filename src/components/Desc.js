@@ -11,6 +11,7 @@ const styles = {
   desc: {
     fontSize: 13,
     lineHeight: '22px',
+    fontFamily: 'Merriweather, Georgia, serif',
     color: 'rgba(0, 0, 0, .9)'
   }
 }

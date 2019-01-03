@@ -22,6 +22,7 @@ class Post extends Component {
   }
   render () {
     const post = this.state.post
+    const EDIT_URL = 'https://github.com/cenchaochao/cenchaochao.io/edit/master/src/posts/'
     return (
       <Layout>
         {
@@ -30,6 +31,7 @@ class Post extends Component {
               <h1 style={styles.title}>{post.header.title}</h1>
               <Desc date={post.header.date} readingTime={post.header.readingTime} />
               <div className="markdown-body" style={styles.mdWrapper} dangerouslySetInnerHTML={{ __html: post.content }} />
+              <a className="external-link" href={EDIT_URL + post.header.title} alt="github" target="_blank" rel="noopener noreferrer">Edit on Github</a>
               <Bio />
             </>
           ) : <NotFound />
@@ -50,7 +52,8 @@ const styles = {
     color: 'rgba(0, 0, 0, .9)'
   },
   mdWrapper: {
-    marginTop: 28
+    marginTop: 28,
+    marginBottom: 28
   }
 }
 

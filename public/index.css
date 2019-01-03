@@ -1,0 +1,9 @@
+.external-link {
+  font-size: 16px;
+  line-height: 28px;
+  font-family: Merriweather, Georgia, serif;
+  color: #d23669
+}
+.external-link:hover {
+  text-decoration: none;
+}
