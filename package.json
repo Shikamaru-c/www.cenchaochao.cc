@@ -65,7 +65,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "generate": "node generate/index.js",
-    "server": "supervisor server/index.js"
+    "server": "supervisor server/index.js",
+    "deploy": "npm run generate && npm run build && npm run server"
   },
   "eslintConfig": {
     "extends": "react-app"
