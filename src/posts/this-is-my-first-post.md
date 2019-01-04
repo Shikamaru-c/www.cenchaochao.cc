@@ -1,7 +1,7 @@
 ---
   title: this is my first post
   date: 2018-01-02
-  spoiler: first post 
+  spoiler: first post
 ---
 
 ## FIRST POST

@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const glob = require('glob')
+const os = require('os')
 
 const markdown = require('markdown').markdown
 const readingTime = require('reading-time')
@@ -14,7 +15,7 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
     const arrayContent = rawContent.split(split).filter(i => !!i)
 
     // header
-    const header = arrayContent.shift().split('\r\n').filter(i => !!i).reduce((object, item) => {
+    const header = arrayContent.shift().split(os.EOL).filter(i => !!i).reduce((object, item) => {
       const arrayItem = item.split(':')
       const key = arrayItem.shift().trim()
       const value = arrayItem.join(':').trim()
@@ -24,7 +25,7 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
 
     // content
     let content = arrayContent.join(split)
-    content = content.startsWith('\r\n\r\n') ? content.replace('\r\n\r\n', '') : content
+    content = content.startsWith(os.EOL) ? content.replace(os.EOL, '') : content
 
     // compute markdown reading time
     header.readingTime = readingTime(content)
