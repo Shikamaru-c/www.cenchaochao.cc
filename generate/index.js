@@ -3,6 +3,7 @@ const path = require('path')
 const glob = require('glob')
 const markdown = require('markdown').markdown
 const readingTime = require('reading-time')
+const beautifyUrl = require('./utils/beautify-url')
 const POSTS_PATH = path.resolve(__dirname, '../src/posts')
 
 glob(`${POSTS_PATH}/*.md`, (err, files) => {
@@ -26,6 +27,8 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
 
     // compute markdown reading time
     header.readingTime = readingTime(content)
+    // beautify url
+    header.url = beautifyUrl(header.title)
 
     return {
       header,

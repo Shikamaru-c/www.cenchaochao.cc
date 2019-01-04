@@ -1,3 +1,3 @@
-export default function (url) {
+module.exports = function (url) {
   return url.replace(/\s/g, '-')
 }

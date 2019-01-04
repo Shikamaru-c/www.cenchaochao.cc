@@ -14,8 +14,8 @@ class Post extends Component {
     }
   }
   componentDidMount () {
-    const title = this.props.location.pathname.slice(1, -1)
-    const post = getPost(title)
+    const url = this.props.location.pathname.slice(1, -1)
+    const post = getPost(url)
     post && this.setState({
       post
     })
@@ -32,7 +32,7 @@ class Post extends Component {
               <Desc date={post.header.date} readingTime={post.header.readingTime} />
               <div className="markdown-body" style={styles.mdWrapper} dangerouslySetInnerHTML={{ __html: post.content }} />
               <div style={styles.linkWrapper}>
-                <a className="external-link" href={EDIT_URL + post.header.title} alt="github" target="_blank" rel="noopener noreferrer">Edit on Github</a>
+                <a className="external-link" href={EDIT_URL + post.header.url + '.md'} alt="github" target="_blank" rel="noopener noreferrer">Edit on Github</a>
               </div>
               <Bio />
             </>
