@@ -5,7 +5,7 @@ const glob = require('glob')
 const markdown = require('markdown').markdown
 const readingTime = require('reading-time')
 
-const POSTS_PATH = path.resolve(__dirname, '../src/posts')
+const POSTS_PATH = path.join(__dirname, '../src/posts')
 
 glob(`${POSTS_PATH}/*.md`, (err, files) => {
   const split = '---'
