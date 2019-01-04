@@ -31,9 +31,9 @@ class Post extends Component {
               <h1 style={styles.title}>{post.header.title}</h1>
               <Desc date={post.header.date} readingTime={post.header.readingTime} />
               <div className="markdown-body" style={styles.mdWrapper} dangerouslySetInnerHTML={{ __html: post.content }} />
-              <div style={styles.linkWrapper}>
+              <p>
                 <a className="external-link" href={EDIT_URL + post.header.url + '.md'} alt="github" target="_blank" rel="noopener noreferrer">Edit on Github</a>
-              </div>
+              </p>
               <Bio />
             </>
           ) : <NotFound />
@@ -47,19 +47,10 @@ const styles = {
   title: {
     marginTop: 42,
     marginBottom: 0,
-    fontSize: 40,
-    lineHeight: '44px',
-    fontWeight: 900,
-    fontFamily: 'Merriweather, Georgia, serif',
-    color: 'rgba(0, 0, 0, .9)'
   },
   mdWrapper: {
     marginTop: 28,
     marginBottom: 28
-  },
-  linkWrapper: {
-    fontSize: 16,
-    lineHeight: '28px'
   }
 }
 
