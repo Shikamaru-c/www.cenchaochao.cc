@@ -9,7 +9,7 @@ const app = express()
 app.use(express.static(path.join(__dirname, '../build/')))
 
 app.get('/deploy', (req, res) => {
-  console.log(res)
+  console.log(req)
 })
 
 app.listen(PORT, () => {
