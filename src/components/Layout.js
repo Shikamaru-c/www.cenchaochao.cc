@@ -8,8 +8,10 @@ function Layout (props) {
 
 const styles = {
   layout: {
+    boxSizing: 'border-box',
     maxWidth: 630,
-    margin: 'auto'
+    margin: 'auto',
+    padding: 20
   }
 }
 
