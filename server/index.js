@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, '../build/')))
 
 app.post('/deploy', (req, res) => {
   const log = `${JSON.stringify(req.body)}${os.EOL}${os.EOL}------${os.EOL}${os.EOL}`
-  fs.appendFileSync(path.join(__dirname, './deploy.log'), log)
+  fs.appendFileSync(path.join(__dirname, './webhook.log'), log)
   res.end()
 })
 
