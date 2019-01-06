@@ -68,8 +68,7 @@
     "generate": "node generate/index.js",
     "server:dev": "supervisor server/index.js",
     "server:prod": "pm2 start server/index.js",
-    "deploy:dev": "npm run generate && npm run build && npm run server:dev",
-    "deploy:prod": "npm run generate && npm run build && npm run server:prod"
+    "deploy": "npm run generate && npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"

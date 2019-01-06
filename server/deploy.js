@@ -18,24 +18,24 @@ function runGitPull (callback) {
   })
 }
 
-function genBuildScript () {
+function genDeployScript () {
   let count = 0;
 
-function runBuild () {
+function runDeploy () {
   count ++
-  const build = spawn('npm', ['run', 'build])
+  const deploy = spawn('npm', ['run', 'deploy'])
 
-  build.stdout.on('data', (data) => {
+  deploy.stdout.on('data', (data) => {
     // 记录日志
   })
   
-  build.stderr.on('data', (data) => {
+  deploy.stderr.on('data', (data) => {
     // 记录日志
   })
   
-  build.on('close', (code) => {
+  deploy.on('close', (code) => {
     if (code !== 0 && count < 3) {
-      runBuild() 
+      runDeploy() 
     }
   })
 }
