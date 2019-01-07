@@ -14,6 +14,20 @@ function genGitPull () {
   }
 }
 
+function genNpmInstall () {
+  return function npmInstall (callback) {
+    exec('npm install', (error, stdout, stderr) => {
+      if (error) {
+        console.log(error)
+        return
+      }
+      console.log(stdout)
+      console.log(stderr)
+      callback()
+    })
+  }
+}
+
 function genNpmRunBuild (MAX_COUNT=7) {
   let count = 0;
   return function npmRunBuild (callback) {
@@ -29,20 +43,6 @@ function genNpmRunBuild (MAX_COUNT=7) {
         // 记录发布失败
         return
       }
-    })
-  }
-}
-
-function genNpmInstall () {
-  return function npmInstall (callback) {
-    exec('npm install', (error, stdout, stderr) => {
-      if (error) {
-        console.log(error)
-        return
-      }
-      console.log(stdout)
-      console.log(stderr)
-      callback()
     })
   }
 }
