@@ -35,8 +35,7 @@ app.post('/deploy', (req, res) => {
     other: 0
   })
 
-  // const tasks = [scripts.genGitPull()]
-  const tasks = []
+  const tasks = [scripts.genGitPull()]
   if (changes.packageJson !== 0) {
     tasks.push(scripts.genNpmInstall())
   }
