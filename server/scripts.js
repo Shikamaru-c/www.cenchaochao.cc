@@ -14,17 +14,17 @@ function genGitPull () {
   }
 }
 
-function genNpmRunGenerate (MAX_COUNT=7) {
+function genNpmRunBuild (MAX_COUNT=7) {
   let count = 0;
-  return function npmRunGenerate (callback) {
+  return function npmRunBuild (callback) {
     count++
-    exec('npm run deploy', (error, stdout, stderr) => {
+    exec('npm run build', (error, stdout, stderr) => {
       if (!error) {
         console.log(stdout)
         console.log(stderr)
         callback()
       } else if (count <= MAX_COUNT) {
-        npmRunGenerate() 
+        npmRunBuild()
       } else if (count > MAX_COUNT) {
         // 记录发布失败
         return
@@ -47,9 +47,9 @@ function genNpmInstall () {
   }
 }
 
-function genNpmRunBuild () {
-  return function npmRunBuild (callback) {
-    exec('npm run build', (error, stdout, stderr) => {
+function genNpmRunGenerate () {
+  return function npmRunGenerate (callback) {
+    exec('npm run generate', (error, stdout, stderr) => {
       if (error) {
         console.log(error)
         return
@@ -65,7 +65,7 @@ function genNpmRunBuild () {
 
 module.exports = {
   genGitPull,
-  genNpmRunGenerate,
   genNpmInstall,
+  genNpmRunGenerate,
   genNpmRunBuild
 }
