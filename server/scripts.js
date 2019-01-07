@@ -22,6 +22,7 @@ function genNpmRunGenerate (MAX_COUNT) {
       if (!error) {
         console.log(stdout)
         console.log(stderr)
+        callback()
       } else if (count <= MAX_COUNT) {
         npmRunGenerate() 
       } else if (count > MAX_COUNT) {
@@ -48,7 +49,7 @@ function genNpmInstall () {
 
 function genNpmRunBuild () {
   return function npmRunBuild (callback) {
-    exec('npm install', (error, stdout, stderr) => {
+    exec('npm run build', (error, stdout, stderr) => {
       if (error) {
         console.log(error)
         return

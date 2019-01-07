@@ -17,40 +17,38 @@ app.post('/deploy', (req, res) => {
   const log = `${JSON.stringify(req.body)}${os.EOL}${os.EOL}------${os.EOL}${os.EOL}`
   fs.appendFileSync(path.join(__dirname, './webhook.log'), log)
 
-  const commits = req.body.commits
+  const commits = req.body.head_commit
   const paths = [...commits.added, ...commits.removed, ...commits.modified]
   const srcRegExp = /^src/
-  const postRegExp = /^src\/posts\/\w*\.md$/
   const changes = paths.reduce((result, path) => {
-     if (postRegExp.test(path)) {
-       result.post++
-     } else if (srcRegExp.test(path)) {
+     if (srcRegExp.test(path)) {
        result.src++
      } else if ('package.json' === path) {
        result.packageJson++
      } else {
        result.other++
      }
+     return result
   }, {
     src: 0,
-    post: 0,
     packageJson: 0,
     other: 0
   })
 
-  const tasks = [scripts.genGitPull()]
+  // const tasks = [scripts.genGitPull()]
+  const tasks = []
   if (changes.packageJson !== 0) {
     tasks.push(scripts.genNpmInstall())
   }
-  if (changes.post !== 0) {
-    tasks.push(scripts.genNpmRunGenerate(3))
-  }
   if (changes.src !== 0) {
+    tasks.push(scripts.genNpmRunGenerate(3))
     tasks.push(scripts.genNpmRunBuild())
   }
-  runTasks(tasks.push(() => {
+  tasks.push(() => {
     res.send('finished')
-  }))
+  })
+
+  runTasks(tasks)()
 
   function runTasks (tasks) {
     return tasks.reduceRight((a, b) => {
