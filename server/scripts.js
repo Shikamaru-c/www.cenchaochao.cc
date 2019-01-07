@@ -14,7 +14,7 @@ function genGitPull () {
   }
 }
 
-function genNpmRunGenerate (MAX_COUNT) {
+function genNpmRunGenerate (MAX_COUNT=7) {
   let count = 0;
   return function npmRunGenerate (callback) {
     count++

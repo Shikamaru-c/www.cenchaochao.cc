@@ -40,7 +40,7 @@ app.post('/deploy', (req, res) => {
     tasks.push(scripts.genNpmInstall())
   }
   if (changes.src !== 0) {
-    tasks.push(scripts.genNpmRunGenerate(3))
+    tasks.push(scripts.genNpmRunGenerate())
     tasks.push(scripts.genNpmRunBuild())
   }
   tasks.push(() => {
