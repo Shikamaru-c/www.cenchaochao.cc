@@ -1,9 +1,6 @@
-const fs = require('fs')
 const path = require('path')
-const os = require('os')
 const express = require('express')
 const bodyParser = require('body-parser')
-// const history = require('connect-history-api-fallback')
 
 const fileMatchers = require('./file-matchers.js')
 const { runTasks } = require('./utils/index.js')
@@ -14,9 +11,10 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../build/')))
-    // app.use(history({
-    //   index: path.join(__dirname, '../build/index.html')
-    // }))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'))
+})
 
 app.post('/deploy', (req, res) => {
 
