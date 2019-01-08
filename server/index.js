@@ -15,7 +15,6 @@ const app = express()
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../build/')))
 
-app.get('/test', (req, res) => res.send('hello, world'))
 app.post('/deploy', (req, res) => {
   const log = `${JSON.stringify(req.body)}${os.EOL}${os.EOL}------${os.EOL}${os.EOL}`
   fs.appendFileSync(path.join(__dirname, './log/webhook.log'), log)
