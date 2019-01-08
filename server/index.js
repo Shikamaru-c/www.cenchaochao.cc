@@ -3,7 +3,7 @@ const path = require('path')
 const os = require('os')
 const express = require('express')
 const bodyParser = require('body-parser')
-// const history = require('connect-history-api-fallback')
+const history = require('connect-history-api-fallback')
 
 const fileMatchers = require('./file-matchers.js')
 const { runTasks } = require('./utils/index.js')
@@ -12,6 +12,9 @@ const PORT = 5058
 
 const app = express()
 
+app.use(history({
+  index: '/build/index.html'
+}))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../build/')))
 
