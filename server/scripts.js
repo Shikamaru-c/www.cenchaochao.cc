@@ -61,11 +61,24 @@ function genNpmRunGenerate () {
   }
 }
 
-
+function genNpmRunReload () {
+  return function npmRunReload (callback) {
+    exec('npm run restart', (error, stdout, stderr) => {
+      if (error) {
+        console.log(error)
+        return
+      }
+      console.log(stdout)
+      console.log(stderr)
+      callback()
+    })
+  }
+}
 
 module.exports = {
   genGitPull,
   genNpmInstall,
   genNpmRunGenerate,
-  genNpmRunBuild
+  genNpmRunBuild,
+  genNpmRunReload
 }

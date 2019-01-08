@@ -20,11 +20,14 @@ app.post('/deploy', (req, res) => {
   const commits = req.body.head_commit
   const paths = [...commits.added, ...commits.removed, ...commits.modified]
   const srcRegExp = /^src/
+  const serverRegExp = /^server/
   const changes = paths.reduce((result, path) => {
      if (srcRegExp.test(path)) {
        result.src++
      } else if ('package.json' === path) {
        result.packageJson++
+     } else if (serverRegExp.test(path)) {
+       result.server++
      } else {
        result.other++
      }
@@ -32,6 +35,7 @@ app.post('/deploy', (req, res) => {
   }, {
     src: 0,
     packageJson: 0,
+    server: 0,
     other: 0
   })
 
@@ -43,10 +47,13 @@ app.post('/deploy', (req, res) => {
     tasks.push(scripts.genNpmRunGenerate())
     tasks.push(scripts.genNpmRunBuild())
   }
+  if (changes.server !== 0) {
+    tasks.push(scripts.genNpmRunReload())
+  }
   tasks.push(() => {
     res.send('finished')
   })
-
+  
   runTasks(tasks)()
 
   function runTasks (tasks) {
