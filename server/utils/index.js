@@ -1,6 +1,6 @@
 function runTasks (tasks) {
   return tasks.reduceRight((a, b) => {
-    return () => b.call(null, a)
+    return b.bind(null, a)
   })
 }
 

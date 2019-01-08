@@ -4,29 +4,29 @@ module.exports = [
     {
       name: 'default',
       scripts: [
-        scripts.genGitPull
+        scripts.genGitPull()
       ]
     },
     {
       name: 'modules',
       regExp: /^package\.json$/,
       scripts: [
-        scripts.genNpmInstall
+        scripts.genNpmInstall()
       ]
     },
     {
       name: 'src',
       regExp: /^src/,
       scripts: [
-        scripts.genNpmRunGenerate,
-        scripts.genNpmRunBuild
+        scripts.genNpmRunGenerate(),
+        scripts.genNpmRunBuild()
       ]
     },
     {
       name: 'server',
       regExp: /^server/,
       scripts: [
-        scripts.genNpmRunReload
+        scripts.genNpmRunReload()
       ]
     }
 ]
