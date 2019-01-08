@@ -4,7 +4,9 @@ const os = require('os')
 const express = require('express')
 const bodyParser = require('body-parser')
 // const history = require('connect-history-api-fallback')
-const scripts = require('./scripts.js')
+
+const fileMatchers = require('./file-matchers.js')
+const { runTasks } = require('./utils/index.js')
 
 const PORT = 5058
 
@@ -19,73 +21,22 @@ app.post('/deploy', (req, res) => {
 
   const commits = req.body.head_commit
   const paths = [...commits.added, ...commits.removed, ...commits.modified]
-  // const o = [
-  //   {
-  //     name: 'src',
-  //     regExp: /^src/,
-  //     scripts: [
-  //       scripts.genNpmRunGenerate,
-  //       scripts.genNpmRunBuild
-  //     ]
-  //   },
-  //   {
-  //     name: 'server',
-  //     regExp: /^server/,
-  //     scripts: [
-  //       scripts.genNpmRunReload
-  //     ]
-  //   },
-  //   {
-  //     name: 'modules',
-  //     regExp: /^package\.json$/,
-  //     scripts: [
-  //       scripts.genNpmInstall
-  //     ]
-  //   }
-  // ]
-  // paths.reduce((result, path) =>)
-  const srcRegExp = /^src/
-  const serverRegExp = /^server/
-  const changes = paths.reduce((result, path) => {
-     if (srcRegExp.test(path)) {
-       result.src++
-     } else if ('package.json' === path) {
-       result.packageJson++
-     } else if (serverRegExp.test(path)) {
-       result.server++
-     } else {
-       result.other++
-     }
-     return result
-  }, {
-    src: 0,
-    packageJson: 0,
-    server: 0,
-    other: 0
+
+  const matchers = fileMatchers.filter(matcher => {
+    return matcher.name === 'default'
+    || paths.some(path => matcher.regExp.test(path))
   })
 
-  const tasks = [scripts.genGitPull()]
-  if (changes.packageJson !== 0) {
-    tasks.push(scripts.genNpmInstall())
-  }
-  if (changes.src !== 0) {
-    tasks.push(scripts.genNpmRunGenerate())
-    tasks.push(scripts.genNpmRunBuild())
-  }
-  if (changes.server !== 0) {
-    tasks.push(scripts.genNpmRunReload())
-  }
+  const tasks = matchers.reduce((tasks, matcher) => {
+    tasks.push(...matcher.scripts)
+    return tasks
+  }, [])
+
   tasks.push(() => {
     res.send('finished')
   })
   
   runTasks(tasks)()
-
-  function runTasks (tasks) {
-    return tasks.reduceRight((a, b) => {
-      return () => b.call(null, a)
-    })
-  }
 })
 
 app.listen(PORT, () => {
