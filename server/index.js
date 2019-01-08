@@ -13,7 +13,7 @@ const PORT = 5058
 const app = express()
 
 app.use(history({
-  index: '/build/index.html'
+  index: path.join(__dirname, '../build/index.html')
 }))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, '../build/')))
