@@ -1,32 +1,32 @@
-const scripts = require('./scripts.js')
+const { genScript } = require('./scripts.js')
 
 module.exports = [
     {
       name: 'default',
       scripts: [
-        scripts.genGitPull()
+        genScript({command: 'git pull'})
       ]
     },
     {
       name: 'modules',
       regExp: /^package\.json$/,
       scripts: [
-        scripts.genNpmInstall()
+        genScript({command: 'npm install'})
       ]
     },
     {
       name: 'src',
       regExp: /^src/,
       scripts: [
-        scripts.genNpmRunGenerate(),
-        scripts.genNpmRunBuild()
+        genScript({command: 'npm run generate'}),
+        genScript({command: 'npm run build', maxRetry: 3})
       ]
     },
     {
       name: 'server',
       regExp: /^server/,
       scripts: [
-        scripts.genNpmRunReload()
+        genScript({command: 'npm run reload'})
       ]
     }
 ]

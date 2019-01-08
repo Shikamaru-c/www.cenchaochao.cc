@@ -1,84 +1,34 @@
 const { exec } = require('child_process')
 
-function genGitPull () {
-  return function gitPull (callback) {
-    exec('git pull', (error, stdout, stderr) => {
-      if (error) {
-        console.log(error)
-        return
-      }
-      console.log(stdout)
-      console.log(stderr)
-      callback()
-    })
-  }
-}
-
-function genNpmInstall () {
-  return function npmInstall (callback) {
-    exec('npm install', (error, stdout, stderr) => {
-      if (error) {
-        console.log(error)
-        return
-      }
-      console.log(stdout)
-      console.log(stderr)
-      callback()
-    })
-  }
-}
-
-function genNpmRunBuild (MAX_COUNT=7) {
-  let count = 0;
-  return function npmRunBuild (callback) {
-    count++
-    exec('npm run build', (error, stdout, stderr) => {
+function genScript ({
+  command,
+  errorCallback,
+  stderrCallback,
+  stdoutCallback,
+  maxRetry
+} = {
+  errorCallback: () => {},
+  stderrCallback: () => {},
+  stdoutCallback: () => {},
+  maxRetry: 0
+}) {
+  let count = 0
+  return function runScript (callback) {
+    count ++
+    exec(command, (error, stdout, stderr) => {
       if (!error) {
-        console.log(stdout)
-        console.log(stderr)
+        stdout && stdoutCallback()
+        stderr && stderrCallback()
         callback()
-      } else if (count <= MAX_COUNT) {
-        npmRunBuild()
-      } else if (count > MAX_COUNT) {
-        // 记录发布失败
-        return
+      } else if (count <= maxRetry) {
+        runScript()
+      } else {
+        errorCallback()
       }
-    })
-  }
-}
-
-function genNpmRunGenerate () {
-  return function npmRunGenerate (callback) {
-    exec('npm run generate', (error, stdout, stderr) => {
-      if (error) {
-        console.log(error)
-        return
-      }
-      console.log(stdout)
-      console.log(stderr)
-      callback()
-    })
-  }
-}
-
-function genNpmRunReload () {
-  return function npmRunReload (callback) {
-    exec('npm run reload', (error, stdout, stderr) => {
-      if (error) {
-        console.log(error)
-        return
-      }
-      console.log(stdout)
-      console.log(stderr)
-      callback()
     })
   }
 }
 
 module.exports = {
-  genGitPull,
-  genNpmInstall,
-  genNpmRunGenerate,
-  genNpmRunBuild,
-  genNpmRunReload
+  genScript
 }
