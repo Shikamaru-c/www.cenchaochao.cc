@@ -51,7 +51,7 @@ function genScript ({
     const log = `
     start: ${reqTime}
     end: ${endTime}
-    elapsed time: ${endTime - reqTime}s
+    elapsed time: ${(endTime - reqTime) / 1000}s
     script: ${command}
     type: ${type}
     message: ${message}
