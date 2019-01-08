@@ -1,4 +1,4 @@
-const { genScript } = require('./scripts.js')
+const { genScript } = require('./utils/index.js')
 
 module.exports = [
     {
