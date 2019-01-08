@@ -19,6 +19,31 @@ app.post('/deploy', (req, res) => {
 
   const commits = req.body.head_commit
   const paths = [...commits.added, ...commits.removed, ...commits.modified]
+  // const o = [
+  //   {
+  //     name: 'src',
+  //     regExp: /^src/,
+  //     scripts: [
+  //       scripts.genNpmRunGenerate,
+  //       scripts.genNpmRunBuild
+  //     ]
+  //   },
+  //   {
+  //     name: 'server',
+  //     regExp: /^server/,
+  //     scripts: [
+  //       scripts.genNpmRunReload
+  //     ]
+  //   },
+  //   {
+  //     name: 'modules',
+  //     regExp: /^package\.json$/,
+  //     scripts: [
+  //       scripts.genNpmInstall
+  //     ]
+  //   }
+  // ]
+  // paths.reduce((result, path) =>)
   const srcRegExp = /^src/
   const serverRegExp = /^server/
   const changes = paths.reduce((result, path) => {
