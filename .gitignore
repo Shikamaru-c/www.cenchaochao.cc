@@ -24,3 +24,5 @@ yarn-error.log*
 
 # extra
 /.vscode
+/src/posts/posts.json
+/server/log
