@@ -63,7 +63,7 @@ function genNpmRunGenerate () {
 
 function genNpmRunReload () {
   return function npmRunReload (callback) {
-    exec('npm run restart', (error, stdout, stderr) => {
+    exec('npm run reload', (error, stdout, stderr) => {
       if (error) {
         console.log(error)
         return
