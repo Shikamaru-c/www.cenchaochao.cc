@@ -37,6 +37,14 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
       content: markdown.toHTML(content)
     }
   })
+
+  res.sort((a, b) => {
+    return getTime(b) - getTime(a)
+  })
   
   fs.writeFileSync(`${POSTS_PATH}/posts.json`, JSON.stringify(res))
 })
+
+function getTime (o) {
+  return o.header.date.replace(/-/, '')
+}
