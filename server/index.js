@@ -10,12 +10,13 @@ const PORT = 5058
 const app = express()
 
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, '../build/')))
+// 静态资源直接nginx做代理，不经过Node
+// app.use(express.static(path.join(__dirname, '../build/')))
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../build/index.html'))
+// })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'))
-})
-
+app.get('/api/hello', (req, res) => res.send('hello, world'))
 app.post('/api/deploy', (req, res) => {
 
   const reqTime = new Date()
