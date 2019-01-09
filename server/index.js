@@ -16,7 +16,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build/index.html'))
 })
 
-app.post('/deploy', (req, res) => {
+app.post('/api/deploy', (req, res) => {
 
   const reqTime = new Date()
 
