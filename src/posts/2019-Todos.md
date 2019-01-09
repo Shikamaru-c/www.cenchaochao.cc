@@ -14,7 +14,7 @@
 ##### 工具方面
 
 - [ ] 深入学习 Webpack
-- [ ] Nginx
+- [x] Nginx
 - [ ] Docker 可以熟练配置
 - [ ] Node 写一些小工具
 
