@@ -3,7 +3,7 @@ html, body {
   color: rgba(0, 0, 0, .9);
 }
 a {
-  color: #d23669;
+  color: #6c890b;
   text-decoration: none;
 }
 p {
@@ -18,7 +18,7 @@ h1 {
 
 .external-link {
   text-decoration: underline;
-  color: #d23669;
+  color: #6c890b;
 }
 .external-link:hover {
   text-decoration: none;

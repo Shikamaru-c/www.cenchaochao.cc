@@ -1,6 +1,7 @@
 {
-  "short_name": "CBlog",
-  "name": "Cenchaochao's personal blog.",
+  "short_name": "Blog",
+  "name": "岑超超的个人博客",
+  "lang": "zh-CN",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,6 +11,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#6c890b",
+  "background_color": "#ffffff",
+  "description": "记录学习之旅与生活趣事"
 }
