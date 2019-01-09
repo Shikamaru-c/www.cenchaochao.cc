@@ -23,3 +23,7 @@ h1 {
 .external-link:hover {
   text-decoration: none;
 }
+
+.post-title {
+  color: #6c890b;
+}

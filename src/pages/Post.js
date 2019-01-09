@@ -28,7 +28,7 @@ class Post extends Component {
         {
           post ? (
             <>
-              <h1 style={styles.title}>{post.header.title}</h1>
+              <h1 className="post-title" style={styles.title}>{post.header.title}</h1>
               <Desc date={post.header.date} readingTime={post.header.readingTime} />
               <div className="markdown-body" style={styles.mdWrapper} dangerouslySetInnerHTML={{ __html: post.content }} />
               <p>
