@@ -3,7 +3,7 @@ const path = require('path')
 const glob = require('glob')
 const os = require('os')
 
-const markdown = require('markdown').markdown
+const marked = require('marked')
 const readingTime = require('reading-time')
 
 const POSTS_PATH = path.join(__dirname, '../src/posts')
@@ -34,7 +34,7 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
 
     return {
       header,
-      content: markdown.toHTML(content)
+      content: marked(content)
     }
   })
 
