@@ -46,5 +46,5 @@ glob(`${POSTS_PATH}/*.md`, (err, files) => {
 })
 
 function getTime (o) {
-  return o.header.date.replace(/-/, '')
+  return o.header.date.replace(/-/g, '')
 }
